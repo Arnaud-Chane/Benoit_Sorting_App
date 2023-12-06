@@ -14,7 +14,8 @@ namespace Benoit_Sorting_App.Controllers
             new Player
             {
                 Id = 1,
-                PlayerAlias = "Test"
+                PlayerAlias = "Test",
+                TournamentPlace = 34
             }
         };
 
