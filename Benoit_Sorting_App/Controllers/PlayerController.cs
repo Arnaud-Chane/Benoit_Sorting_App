@@ -57,6 +57,12 @@ namespace Benoit_Sorting_App.Controllers
             return Ok(player);
         }
 
+        [HttpDelete]
+        public async Task<OkObjectResult> DeleteAllPlayers()
+        {
+            players.Clear();
+            return Ok("All players are deleted.");
+        }
 
         private Player CreatePlayer(string playerAlias, int id)
         {
