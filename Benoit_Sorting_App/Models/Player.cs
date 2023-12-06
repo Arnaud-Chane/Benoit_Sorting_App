@@ -7,6 +7,7 @@ namespace benoit_Sorting_App.Models
         private int _id;
         private string _playerAlias;
         private int _playerScore;
+        private int _tournamentPlace;
 
         public int Id
         {
@@ -24,6 +25,12 @@ namespace benoit_Sorting_App.Models
         {
             get { return _playerScore; }
             set { _playerScore = value; }
+        }
+
+        public int TournamentPlace
+        {
+            get { return _tournamentPlace; }
+            set { _tournamentPlace = value; }
         }
     }
 }
