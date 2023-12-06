@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Security.Cryptography;
 using System.Text.Json.Serialization;
+using System.Collections;
 
 namespace Benoit_Sorting_App.Controllers
 {
@@ -20,6 +21,13 @@ namespace Benoit_Sorting_App.Controllers
                 TournamentPlace = 34
             }
         };
+
+        [HttpGet]
+        public async Task<ActionResult<List<Player>>> GetAllPlayersSortByScore()
+        {
+            var sortedPlayer = players.OrderByDescending(x => x.PlayerScore).ThenBy(x => x.PlayerAlias).ToList();
+            return Ok(sortedPlayer);
+        }
 
         [HttpGet("{playerAlias}")]
         public async Task<ActionResult<Player>> GetPlayerData(String playerAlias)
