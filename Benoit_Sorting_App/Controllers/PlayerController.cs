@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Security.Cryptography;
 using System.Text.Json.Serialization;
+using System.Collections;
 
 namespace Benoit_Sorting_App.Controllers
 {
@@ -58,6 +59,15 @@ namespace Benoit_Sorting_App.Controllers
                 Id = id
             };
             return player;
+        }
+
+        private class ComparePlayers : IComparer
+        {
+            public int Compare(object? x, object? y)
+            {
+                return (new CaseInsensitiveComparer()).Compare(((Player)x).PlayerScore,
+                       ((Player)y).PlayerScore);
+            }
         }
     }
 }
