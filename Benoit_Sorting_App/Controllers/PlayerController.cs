@@ -22,6 +22,12 @@ namespace Benoit_Sorting_App.Controllers
             }
         };
 
+        [HttpGet]
+        public async Task<ActionResult<List<Player>>> GetAllPlayersSortByScore()
+        {
+            return Ok("ok");
+        }
+
         [HttpGet("{playerAlias}")]
         public async Task<ActionResult<Player>> GetPlayerData(String playerAlias)
         {
