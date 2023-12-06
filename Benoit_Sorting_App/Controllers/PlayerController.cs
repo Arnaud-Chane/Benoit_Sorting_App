@@ -12,12 +12,20 @@ namespace Benoit_Sorting_App.Controllers
         [HttpPost]
         public async Task<ActionResult<List<Player>>> AddNewPlayer(String newPlayerAlias)
         {
-            Player newPlayer = new Player
-            {
-                Id : players.Count();
-            }
-            players.Add();
+            Player newPlayer = CreatePlayer(newPlayerAlias, players.Count());
 
+            players.Add(newPlayer);
+            return players;
+        }
+
+        private Player CreatePlayer(string playerAlias, int id)
+        {
+            Player player = new Player
+            {
+                PlayerAlias = playerAlias,
+                Id = id
+            };
+            return player;
         }
     }
 }
