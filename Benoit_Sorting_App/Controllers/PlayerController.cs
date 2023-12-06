@@ -25,7 +25,8 @@ namespace Benoit_Sorting_App.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Player>>> GetAllPlayersSortByScore()
         {
-            return Ok("ok");
+            var sortedPlayer = players.OrderByDescending(x => x.PlayerScore).ThenBy(x => x.PlayerAlias).ToList();
+            return Ok(sortedPlayer);
         }
 
         [HttpGet("{playerAlias}")]
@@ -65,15 +66,6 @@ namespace Benoit_Sorting_App.Controllers
                 Id = id
             };
             return player;
-        }
-
-        private class ComparePlayers : IComparer
-        {
-            public int Compare(object? x, object? y)
-            {
-                return (new CaseInsensitiveComparer()).Compare(((Player)x).PlayerScore,
-                       ((Player)y).PlayerScore);
-            }
         }
     }
 }
