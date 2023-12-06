@@ -6,5 +6,6 @@ namespace benoit_Sorting_App.Models
     {
         public int Id { get; set; }
         public string PlayerAlias { get; set; } = string.Empty;
+        public int PlayerScore { get; set; }
     }
 }

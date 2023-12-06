@@ -8,7 +8,15 @@ namespace Benoit_Sorting_App.Controllers
     [ApiController]
     public class PlayerController : ControllerBase
     {
-        private static List<Player> players = new List<Player>();
+        //private static List<Player> players = new List<Player>();
+        private static List<Player> players = new List<Player>
+        {
+            new Player
+            {
+                Id = 1,
+                PlayerAlias = "Test"
+            }
+        };
 
         [HttpPost]
         public async Task<ActionResult<List<Player>>> AddNewPlayer(String newPlayerAlias)
@@ -20,9 +28,13 @@ namespace Benoit_Sorting_App.Controllers
         }
 
         [HttpPut("{playerAlias}")]
-        public async Task<ActionResult<Player>> UpdatePlayerScore(String playerAlias)
+        public async Task<ActionResult<Player>> UpdatePlayerScore(String playerAlias, int playerScore)
         {
-            return Ok("ok");
+            var player = players.Find(x => x.PlayerAlias == playerAlias);
+            if (player is null)
+                return NotFound("there's no player with that name.");
+            player.PlayerScore = playerScore;
+            return Ok(player);
         }
 
 
