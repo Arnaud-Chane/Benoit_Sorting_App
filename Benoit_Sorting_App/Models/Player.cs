@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 
 namespace benoit_Sorting_App.Models
 {
@@ -7,12 +8,7 @@ namespace benoit_Sorting_App.Models
         private int _id;
         private string _playerAlias;
         private int _playerScore;
-
-        public int Id
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
+        private int _tournamentPlace;
 
         public string PlayerAlias
         {
@@ -24,6 +20,19 @@ namespace benoit_Sorting_App.Models
         {
             get { return _playerScore; }
             set { _playerScore = value; }
+        }
+
+        public int TournamentPlace
+        {
+            get { return _tournamentPlace; }
+            set { _tournamentPlace = value; }
+        }
+
+        [JsonIgnore]
+        public int Id
+        {
+            get { return _id; }
+            set { _id = value; }
         }
     }
 }

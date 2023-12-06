@@ -1,6 +1,8 @@
 ﻿using benoit_Sorting_App.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using System.Security.Cryptography;
+using System.Text.Json.Serialization;
 
 namespace Benoit_Sorting_App.Controllers
 {
@@ -14,9 +16,19 @@ namespace Benoit_Sorting_App.Controllers
             new Player
             {
                 Id = 1,
-                PlayerAlias = "Test"
+                PlayerAlias = "Test",
+                TournamentPlace = 34
             }
         };
+
+        [HttpGet("{playerAlias}")]
+        public async Task<ActionResult<Player>> GetPlayerData(String playerAlias)
+        {
+            var player = players.Find(x => x.PlayerAlias == playerAlias);
+            if (player is null)
+                return NotFound("there's no player with that name.");
+            return Ok(player);
+        }
 
         [HttpPost]
         public async Task<ActionResult<List<Player>>> AddNewPlayer(String newPlayerAlias)
