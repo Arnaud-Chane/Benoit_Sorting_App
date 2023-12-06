@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Benoit_Sorting_App.props" />
+</Project>
