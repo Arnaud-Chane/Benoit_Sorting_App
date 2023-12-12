@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Benoit_Sorting_App")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5b46e01a5f6e608c2365652e2118371fcf41fec0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+47f4ffbba3cc8183e2e1a0652b3fc12a0a937fa7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Benoit_Sorting_App")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Benoit_Sorting_App")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

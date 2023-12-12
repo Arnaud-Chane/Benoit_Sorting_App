@@ -41,7 +41,9 @@ namespace Benoit_Sorting_App.Controllers
         {
             var player = players.Find(x => x.PlayerAlias == playerAlias);
             if (player is null)
+            {
                 return NotFound("There is no player with that name.");
+            }
             return Ok(player);
         }
 
