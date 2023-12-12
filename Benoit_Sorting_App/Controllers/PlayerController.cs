@@ -30,8 +30,7 @@ namespace Benoit_Sorting_App.Controllers
         public async Task<ActionResult<List<Player>>> GetAllPlayersSortByScore()
         {
             var sortedPlayer = players
-                .OrderByDescending(x => x.PlayerScore)
-                .ThenBy(x => x.PlayerAlias).ToList();
+                .OrderByDescending(x => x.PlayerScore); 
             return Ok(sortedPlayer);
         }
 
