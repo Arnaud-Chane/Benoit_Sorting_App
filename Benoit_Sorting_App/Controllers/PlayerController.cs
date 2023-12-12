@@ -36,7 +36,7 @@ namespace Benoit_Sorting_App.Controllers
 
         //TODO : GetPlayerByAlias remove generic term Data
         [HttpGet("{playerAlias}")]
-        public async Task<ActionResult<Player>> GetPlayerData(String playerAlias)
+        public async Task<ActionResult<Player>> GetPlayerByAlias(String playerAlias)
         {
             var player = players.Find(x => x.PlayerAlias == playerAlias);
             if (player is null)
@@ -52,6 +52,11 @@ namespace Benoit_Sorting_App.Controllers
         [HttpPost]
         public async Task<ActionResult<List<Player>>> AddNewPlayer(String newPlayerAlias)
         {
+            var player = players.Find(x => x.PlayerAlias == newPlayerAlias);
+            if (player is not null)
+            {
+                return NotFound("There is already a player with that name.");
+            }
             Player newPlayer = CreatePlayer(newPlayerAlias);
 
             players.Add(newPlayer);
