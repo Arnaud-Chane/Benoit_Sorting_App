@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Http;
 using System.Security.Cryptography;
 using System.Text.Json.Serialization;
 using System.Collections;
+using benoit_Sorting_App.Models;
+using Benoit_Sorting_App.Services.PlayerService;
 
 namespace Benoit_Sorting_App.Controllers
 {
@@ -24,6 +26,12 @@ namespace Benoit_Sorting_App.Controllers
                 TournamentPlace = 34
             }
         };
+
+        private readonly PlayerService _playerService;
+        public PlayerController(PlayerService playerService)
+        {
+            _playerService = playerService;
+        }
 
         [HttpGet]
         public async Task<ActionResult<List<Player>>> GetAllPlayersSortByScore()
@@ -80,15 +88,6 @@ namespace Benoit_Sorting_App.Controllers
         {
             players.Clear();
             return Ok(players);
-        }
-
-        private Player CreatePlayer(string playerAlias)
-        {
-            Player player = new Player
-            {
-                PlayerAlias = playerAlias,
-            };
-            return player;
         }
     }
 }
