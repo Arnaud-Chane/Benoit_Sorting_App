@@ -21,7 +21,6 @@ namespace Benoit_Sorting_App.Controllers
         {
             new Player
             {
-                Id = 1,
                 PlayerAlias = "Test",
                 TournamentPlace = 34
             }
@@ -52,7 +51,7 @@ namespace Benoit_Sorting_App.Controllers
         [HttpPost]
         public async Task<ActionResult<List<Player>>> AddNewPlayer(String newPlayerAlias)
         {
-            Player newPlayer = CreatePlayer(newPlayerAlias, players.Count());
+            Player newPlayer = CreatePlayer(newPlayerAlias);
 
             players.Add(newPlayer);
             return Ok(players);
@@ -78,12 +77,11 @@ namespace Benoit_Sorting_App.Controllers
             return Ok(players);
         }
 
-        private Player CreatePlayer(string playerAlias, int id)
+        private Player CreatePlayer(string playerAlias)
         {
             Player player = new Player
             {
                 PlayerAlias = playerAlias,
-                Id = id
             };
             return player;
         }
