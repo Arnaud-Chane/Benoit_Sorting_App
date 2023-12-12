@@ -6,11 +6,15 @@ namespace benoit_Sorting_App.Models
     public class Player
     {
         private int _id;
-        private string _playerAlias;
+        private String _playerAlias;
         private int _playerScore;
         private int _tournamentPlace;
 
-        public string PlayerAlias
+        /* TODO : check if setter are mandatory
+            if yes, check to make them private
+            
+        */
+        public String PlayerAlias
         {
             get { return _playerAlias; }
             set { _playerAlias = value; }
@@ -29,6 +33,7 @@ namespace benoit_Sorting_App.Models
         }
 
         [JsonIgnore]
+        //TODO : remove this
         public int Id
         {
             get { return _id; }

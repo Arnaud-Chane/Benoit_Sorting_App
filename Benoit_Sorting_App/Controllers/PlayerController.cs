@@ -11,7 +11,12 @@ namespace Benoit_Sorting_App.Controllers
     [ApiController]
     public class PlayerController : ControllerBase
     {
-        //private static List<Player> players = new List<Player>();
+        //TODO : create service where logic belong
+        //TODO : Remove async 
+        // TODO : {} in if
+        // TODO : YAGNI l.33 remove ThenBy
+
+        private static List<Player> emptyPlayers = new List<Player>();
         private static List<Player> players = new List<Player>
         {
             new Player
@@ -25,19 +30,25 @@ namespace Benoit_Sorting_App.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Player>>> GetAllPlayersSortByScore()
         {
-            var sortedPlayer = players.OrderByDescending(x => x.PlayerScore).ThenBy(x => x.PlayerAlias).ToList();
+            var sortedPlayer = players
+                .OrderByDescending(x => x.PlayerScore)
+                .ThenBy(x => x.PlayerAlias).ToList();
             return Ok(sortedPlayer);
         }
 
+        //TODO : GetPlayerByAlias remove generic term Data
         [HttpGet("{playerAlias}")]
         public async Task<ActionResult<Player>> GetPlayerData(String playerAlias)
         {
             var player = players.Find(x => x.PlayerAlias == playerAlias);
             if (player is null)
-                return NotFound("there's no player with that name.");
+                return NotFound("There is no player with that name.");
             return Ok(player);
         }
 
+        // TODO : check player Alias before adding one
+        // TODO :  rename method and parameter
+        // 
         [HttpPost]
         public async Task<ActionResult<List<Player>>> AddNewPlayer(String newPlayerAlias)
         {
@@ -52,16 +63,19 @@ namespace Benoit_Sorting_App.Controllers
         {
             var player = players.Find(x => x.PlayerAlias == playerAlias);
             if (player is null)
+            {
                 return NotFound("there's no player with that name.");
+            }
             player.PlayerScore = playerScore;
             return Ok(player);
         }
 
+        //TODO : modif type of return
         [HttpDelete]
         public async Task<OkObjectResult> DeleteAllPlayers()
         {
             players.Clear();
-            return Ok("All players are deleted.");
+            return Ok(players);
         }
 
         private Player CreatePlayer(string playerAlias, int id)
