@@ -1,10 +1,8 @@
-﻿using benoit_Sorting_App.Models;
-
-namespace Benoit_Sorting_App.Services.PlayerService
+﻿namespace Benoit_Sorting_App.Services.PlayerService
 {
     public class PlayerService : IPlayerService
     {
-        private static List<Player> players = new List<Player>
+                private static List<Player> players = new List<Player>
         {
             new Player
             {
@@ -13,6 +11,24 @@ namespace Benoit_Sorting_App.Services.PlayerService
             }
         };
 
+        public List<Player> AddNewPlayer(string newPlayerAlias)
+        {
+            throw new NotImplementedException();
+        }
 
+        public List<Player> GetAllPlayersSortByScore()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Player GetPlayerByAlias(string playerAlias)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Player UpdatePlayerScore(string playerAlias, int playerScore)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
