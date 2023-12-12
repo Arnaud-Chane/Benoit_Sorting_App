@@ -77,7 +77,7 @@ namespace Benoit_Sorting_App.Controllers
 
         //TODO : modif type of return
         [HttpDelete]
-        public async Task<OkObjectResult> DeleteAllPlayers()
+        public IActionResult DeleteAllPlayers()
         {
             players.Clear();
             return Ok(players);
