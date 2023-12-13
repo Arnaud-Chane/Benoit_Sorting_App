@@ -8,21 +8,6 @@ namespace Benoit_Sorting_App.Controllers
     [ApiController]
     public class PlayerController : ControllerBase
     {
-        //TODO : create service where logic belong
-        //TODO : Remove async 
-        // TODO : {} in if
-        // TODO : YAGNI l.33 remove ThenBy
-
-        private static List<Player> emptyPlayers = new List<Player>();
-        private static List<Player> players = new List<Player>
-        {
-            new Player
-            {
-                PlayerAlias = "Test",
-                TournamentPlace = 34
-            }
-        };
-
         private readonly PlayerService _playerService;
         public PlayerController(PlayerService playerService)
         {
@@ -30,13 +15,12 @@ namespace Benoit_Sorting_App.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Player>>> GetAllPlayersSortByScore()
+        public ActionResult<List<Player>> GetAllPlayersSortByScore()
         {
             var sortedPlayer = _playerService.GetAllPlayersSortByScore();
             return Ok(sortedPlayer);
         }
 
-        //TODO : GetPlayerByAlias remove generic term Data
         [HttpGet("{playerAlias}")]
         public async Task<ActionResult<Player>> GetPlayerByAlias(String playerAlias)
         {
@@ -48,22 +32,19 @@ namespace Benoit_Sorting_App.Controllers
             return Ok(player);
         }
 
-        // TODO : check player Alias before adding one
-        // TODO :  rename method and parameter
-        // 
         [HttpPost]
         public async Task<ActionResult<List<Player>>> AddNewPlayer(String newPlayerAlias)
         {
-            var player = _playerService.AddNewPlayer(newPlayerAlias);
-            if (player is null)
+            var players = _playerService.AddNewPlayer(newPlayerAlias);
+            if (players is null)
             {
                 return BadRequest("There is already a player with that name.");
             }
-            return Ok(player);
+            return Ok(players);
         }
 
         [HttpPut("{playerAlias}")]
-        public async Task<ActionResult<Player>> UpdatePlayerScore(String playerAlias, int playerScore)
+        public ActionResult<Player> UpdatePlayerScore(String playerAlias, int playerScore)
         {
             var player = _playerService.UpdatePlayerScore(playerAlias, playerScore);
             if (player is null)
@@ -73,9 +54,8 @@ namespace Benoit_Sorting_App.Controllers
             return Ok(player);
         }
 
-        //TODO : modif type of return
         [HttpDelete]
-        public IActionResult DeleteAllPlayers()
+        public ActionResult<List<Player>> DeleteAllPlayers()
         {
             var result = _playerService.DeleteAllPlayers();
             return Ok(result);

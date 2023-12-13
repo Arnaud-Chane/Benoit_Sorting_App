@@ -18,12 +18,15 @@ namespace Benoit_Sorting_App.Services.PlayerService
             }
         };
 
+        // TODO : Check which best solution l28
         public List<Player> GetAllPlayersSortByScore()
         {
-            List<Player> sortedPlayer = players;
-            sortedPlayer.Sort((p1, p2) => p1.PlayerScore.CompareTo(p2.PlayerScore));
-            sortedPlayer.Reverse();
-            return sortedPlayer;
+            //players.Sort((p1, p2) => p1.PlayerScore.CompareTo(p2.PlayerScore)).ToList();
+            //players.Reverse();
+            //return players;
+
+            //return players.OrderByDescending(p => p.PlayerScore).ToList();
+            return [.. players.OrderByDescending(p => p.PlayerScore)];
         }
 
         public Player GetPlayerByAlias(string playerAlias)
@@ -36,15 +39,13 @@ namespace Benoit_Sorting_App.Services.PlayerService
             return player;
         }
 
-        //TODO : switch null to what
+        //TODO : Exception rch in C# how to throw exception
         public List<Player> AddNewPlayer(string newPlayerAlias)
         {
             var player = players.Find(x => x.PlayerAlias == newPlayerAlias);
             if (player is not null)
             {
-                //TODO : Find what to return
-                //return "There is already a player with that name.";
-                return null;
+                throw new BadHttpRequestException("test");
             }
             Player newPlayer = CreatePlayer(newPlayerAlias);
 
