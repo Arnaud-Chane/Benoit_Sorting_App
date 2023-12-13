@@ -59,11 +59,10 @@ namespace Benoit_Sorting_App.Services.PlayerService
             return player;
         }
 
-        public IActionResult DeleteAllPlayers()
+        public List<Player> DeleteAllPlayers()
         {
             players.Clear();
-            List<Player> players1 = players;
-            return (IActionResult)players1;
+            return players;
         }
 
 
