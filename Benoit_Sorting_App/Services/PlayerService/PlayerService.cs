@@ -23,7 +23,12 @@ namespace Benoit_Sorting_App.Services.PlayerService
 
         public Player GetPlayerByAlias(string playerAlias)
         {
-            throw new NotImplementedException();
+            var player = players.Find(x => x.PlayerAlias == playerAlias);
+            if (player is null)
+            {
+                return null;
+            }
+            return player;
         }
 
         //TODO : switch null to what

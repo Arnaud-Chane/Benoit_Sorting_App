@@ -40,10 +40,10 @@ namespace Benoit_Sorting_App.Controllers
         [HttpGet("{playerAlias}")]
         public async Task<ActionResult<Player>> GetPlayerByAlias(String playerAlias)
         {
-            var player = players.Find(x => x.PlayerAlias == playerAlias);
-            if (player is null)
+            var player = _playerService.GetPlayerByAlias(playerAlias);
+            if(player is null)
             {
-                return NotFound("There is no player with that name.");
+                return NotFound("There is no player with this name.");
             }
             return Ok(player);
         }
