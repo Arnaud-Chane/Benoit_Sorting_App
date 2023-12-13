@@ -1,8 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using System.Security.Cryptography;
-using System.Text.Json.Serialization;
-using System.Collections;
 using benoit_Sorting_App.Models;
 using Benoit_Sorting_App.Services.PlayerService;
 
@@ -58,15 +54,12 @@ namespace Benoit_Sorting_App.Controllers
         [HttpPost]
         public async Task<ActionResult<List<Player>>> AddNewPlayer(String newPlayerAlias)
         {
-            var player = players.Find(x => x.PlayerAlias == newPlayerAlias);
-            if (player is not null)
+            var player = _playerService.AddNewPlayer(newPlayerAlias);
+            if (player is null)
             {
-                return NotFound("There is already a player with that name.");
+                return BadRequest("There is already a player with that name.");
             }
-            Player newPlayer = CreatePlayer(newPlayerAlias);
-
-            players.Add(newPlayer);
-            return Ok(players);
+            return Ok(player);
         }
 
         [HttpPut("{playerAlias}")]

@@ -21,6 +21,12 @@ namespace Benoit_Sorting_App.Services.PlayerService
             return (List<Player>)sortedPlayer;
         }
 
+        public Player GetPlayerByAlias(string playerAlias)
+        {
+            throw new NotImplementedException();
+        }
+
+        //TODO : switch null to what
         public List<Player> AddNewPlayer(string newPlayerAlias)
         {
             var player = players.Find(x => x.PlayerAlias == newPlayerAlias);
@@ -34,11 +40,6 @@ namespace Benoit_Sorting_App.Services.PlayerService
 
             players.Add(newPlayer);
             return players;
-        }
-
-        public Player GetPlayerByAlias(string playerAlias)
-        {
-            throw new NotImplementedException();
         }
 
         public Player UpdatePlayerScore(string playerAlias, int playerScore)
