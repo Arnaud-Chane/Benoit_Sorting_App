@@ -65,12 +65,11 @@ namespace Benoit_Sorting_App.Controllers
         [HttpPut("{playerAlias}")]
         public async Task<ActionResult<Player>> UpdatePlayerScore(String playerAlias, int playerScore)
         {
-            var player = players.Find(x => x.PlayerAlias == playerAlias);
+            var player = _playerService.UpdatePlayerScore(playerAlias, playerScore);
             if (player is null)
             {
                 return NotFound("there's no player with that name.");
             }
-            player.PlayerScore = playerScore;
             return Ok(player);
         }
 

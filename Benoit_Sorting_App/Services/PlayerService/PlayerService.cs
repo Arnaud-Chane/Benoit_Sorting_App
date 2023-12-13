@@ -49,7 +49,13 @@ namespace Benoit_Sorting_App.Services.PlayerService
 
         public Player UpdatePlayerScore(string playerAlias, int playerScore)
         {
-            throw new NotImplementedException();
+            var player = players.Find(x => x.PlayerAlias == playerAlias);
+            if (player is null)
+            {
+                return null;
+            }
+            player.PlayerScore = playerScore;
+            return player;
         }
 
         private Player CreatePlayer(string playerAlias)
