@@ -4,7 +4,8 @@ namespace Benoit_Sorting_App.Services.PlayerService
 {
     public class PlayerService
     {
-                private static List<Player> players = new List<Player>
+        private static List<Player> emptyPlayers = new List<Player>();
+        private static List<Player> players = new List<Player>
         {
             new Player
             {
@@ -13,23 +14,26 @@ namespace Benoit_Sorting_App.Services.PlayerService
             }
         };
 
+        public List<Player> GetAllPlayersSortByScore()
+        {
+            var sortedPlayer = players
+                .OrderByDescending(x => x.PlayerScore);
+            return (List<Player>)sortedPlayer;
+        }
+
         public List<Player> AddNewPlayer(string newPlayerAlias)
         {
             var player = players.Find(x => x.PlayerAlias == newPlayerAlias);
             if (player is not null)
             {
                 //TODO : Find what to return
-                return "There is already a player with that name.";
+                //return "There is already a player with that name.";
+                return null;
             }
             Player newPlayer = CreatePlayer(newPlayerAlias);
 
             players.Add(newPlayer);
             return players;
-        }
-
-        public List<Player> GetAllPlayersSortByScore()
-        {
-            throw new NotImplementedException();
         }
 
         public Player GetPlayerByAlias(string playerAlias)

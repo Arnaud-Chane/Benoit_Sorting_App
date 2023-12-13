@@ -36,8 +36,7 @@ namespace Benoit_Sorting_App.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Player>>> GetAllPlayersSortByScore()
         {
-            var sortedPlayer = players
-                .OrderByDescending(x => x.PlayerScore); 
+            var sortedPlayer = _playerService.GetAllPlayersSortByScore();
             return Ok(sortedPlayer);
         }
 
