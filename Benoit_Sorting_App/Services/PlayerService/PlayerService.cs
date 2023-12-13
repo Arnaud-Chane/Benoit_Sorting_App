@@ -1,4 +1,5 @@
 ﻿using benoit_Sorting_App.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Benoit_Sorting_App.Services.PlayerService
 {
@@ -57,6 +58,14 @@ namespace Benoit_Sorting_App.Services.PlayerService
             player.PlayerScore = playerScore;
             return player;
         }
+
+        public IActionResult DeleteAllPlayers()
+        {
+            players.Clear();
+            List<Player> players1 = players;
+            return (IActionResult)players1;
+        }
+
 
         private Player CreatePlayer(string playerAlias)
         {

@@ -77,8 +77,8 @@ namespace Benoit_Sorting_App.Controllers
         [HttpDelete]
         public IActionResult DeleteAllPlayers()
         {
-            players.Clear();
-            return Ok(players);
+            var result = _playerService.DeleteAllPlayers();
+            return Ok(result);
         }
     }
 }
