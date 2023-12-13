@@ -1,6 +1,4 @@
 ﻿using benoit_Sorting_App.Models;
-using Microsoft.AspNetCore.Mvc;
-
 namespace Benoit_Sorting_App.Services.PlayerService
 {
     public class PlayerService
@@ -12,14 +10,20 @@ namespace Benoit_Sorting_App.Services.PlayerService
             {
                 PlayerAlias = "Test",
                 TournamentPlace = 34
+            },
+            new Player
+            {
+                PlayerAlias = "Test2",
+                TournamentPlace = 10
             }
         };
 
         public List<Player> GetAllPlayersSortByScore()
         {
-            var sortedPlayer = players
-                .OrderByDescending(x => x.PlayerScore);
-            return (List<Player>)sortedPlayer;
+            List<Player> sortedPlayer = players;
+            sortedPlayer.Sort((p1, p2) => p1.PlayerScore.CompareTo(p2.PlayerScore));
+            sortedPlayer.Reverse();
+            return sortedPlayer;
         }
 
         public Player GetPlayerByAlias(string playerAlias)
